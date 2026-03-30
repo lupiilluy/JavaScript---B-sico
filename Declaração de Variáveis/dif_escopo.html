@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Diferença de Escopo</h3>
+    <p>Aqui mostra a diferença da variável dentro e fora do bloco com o <b>console.log</b> (aperte F12).</p>
+
+<SCript>
+    let numero = 10
+
+    {
+        let numero = 20;
+        console.log(`Dentro do Bloco, o vlaor é: ${numero}`);
+    }
+
+console.log(`Fora do bloco, o valor é: ${numero}`);
+
+</SCript>
+</body>
+
+
+</html>
