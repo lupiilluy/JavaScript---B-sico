@@ -6,17 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-
-<h3>Declarando e tentando alternar o <b>CONST</b></h3>
-<p>CONST é uma variável constante que NÃO pode ser alterada/ter outra atribuição <b>(aperte F12).</b></p>
+    <h3>Filtrar Números Pares</h3>
 
     <script>
+        const numeros = [1, 2, 3, 4, 5];
 
-const pi = 3.14159;
-pi = 3.14;
+const par = numeros.filter(function(num) {
+    return num % 2 ===0;
+});
 
-console.log(pi);
+console.log("Todos os númerosl:", numeros);
 
+console.log("Pares:", par);
     </script>
 </body>
 </html>

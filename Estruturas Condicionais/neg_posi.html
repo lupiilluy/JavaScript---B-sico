@@ -6,17 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-
-<h3>Declarando e tentando alternar o <b>CONST</b></h3>
-<p>CONST é uma variável constante que NÃO pode ser alterada/ter outra atribuição <b>(aperte F12).</b></p>
+    <h3>Negativo e Positivo</h3>
 
     <script>
+        let num = Number(prompt(`Digite um número:`))
 
-const pi = 3.14159;
-pi = 3.14;
-
-console.log(pi);
-
+        console.log("O número é ", (num > 0) ? "Positivo" : (num < 0) ? "Negativo" : "Zero");
     </script>
 </body>
 </html>

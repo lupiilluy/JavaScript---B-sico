@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<body>
+
+    <h1>Controle de Fila de Atendimento</h1>
+
+    <input type="text" id="nomePessoa" placeholder="Nome do cliente">
+    <button onclick="entrarNaFila()">Entrar na Fila</button>
+    <button onclick="atenderPessoa()">Atender Próximo</button>
+
+    <hr>
+
+    <h3>Fila de Espera Atual</h3>
+    <p id="exibirFila"></p>
+
+    <hr>
+
+    <h3>Histórico de Atendimentos</h3>
+    <p id="exibirHistorico"></p>
+
+    <script>
+        let filaEspera = [];
+        let historicoAtendimento = [];
+
+        const formatador = new Intl.DateTimeFormat('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        function entrarNaFila() {
+            const nome = document.getElementById('nomePessoa').value;
+            
+            if (nome === "") {
+                alert("Por favor, digite um nome.");
+                return;
+            }
+
+            const pessoa = {
+                nome: nome,
+                entrada: Date.now()
+            };
+
+            filaEspera.push(pessoa);
+            document.getElementById('nomePessoa').value = "";
+            atualizarTela();
+        }
+
+        function atenderPessoa() {
+            if (filaEspera.length === 0) {
+                alert("Não há ninguém na fila!");
+                return;
+            }
+
+            const pessoaAtendida = filaEspera.shift();
+            const agora = Date.now();
+            const tempoEsperaMS = agora - pessoaAtendida.entrada;
+            const segundosTotal = Math.floor(tempoEsperaMS / 1000);
+
+            const registro = {
+                nome: pessoaAtendida.nome,
+                horaEntrada: formatador.format(pessoaAtendida.entrada),
+                horaAtendimento: formatador.format(agora),
+                espera: segundosTotal + " segundos"
+            };
+
+            historicoAtendimento.push(registro);
+            atualizarTela();
+        }
+
+        function atualizarTela() {
+            let txtFila = "";
+            for (let p of filaEspera) {
+                txtFila += `[${p.nome} | Entrou às: ${formatador.format(p.entrada)}] <br>`;
+            }
+            document.getElementById('exibirFila').innerHTML = txtFila || "Fila vazia.";
+
+            let txtHistorico = "";
+            for (let h of historicoAtendimento) {
+                txtHistorico += `Cliente: ${h.nome} | Entrada: ${h.horaEntrada} | Atendimento: ${h.horaAtendimento} | Tempo: ${h.espera} <br>`;
+            }
+            document.getElementById('exibirHistorico').innerHTML = txtHistorico || "Nenhum atendimento realizado.";
+        }
+    </script>
+
+</body>
+</html>

@@ -6,16 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-
-<h3>Declarando e tentando alternar o <b>CONST</b></h3>
-<p>CONST é uma variável constante que NÃO pode ser alterada/ter outra atribuição <b>(aperte F12).</b></p>
+    <h3>Percorrendo Arrays</h3>
 
     <script>
 
-const pi = 3.14159;
-pi = 3.14;
+const frutas = ["Maçã", "Banana", "Morango", "Uva", "Manga"];
 
-console.log(pi);
+for (let fruta of frutas) {
+    console.log(`Fruta da vez: ${fruta}`);
+}
 
     </script>
 </body>
